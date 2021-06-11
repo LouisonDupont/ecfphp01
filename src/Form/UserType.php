@@ -39,9 +39,9 @@ class UserType extends AbstractType
                 ]
             ])
             ->add('nom', TextType::class, [
-                'label'       => 'Votre prénom',
+                'label'       => 'Votre nom',
                 'attr'        => [
-                    'placeholder' => 'Merci de saisir votre prénom.'
+                    'placeholder' => 'Merci de saisir votre nom.'
                 ],
                 'required'    => true,
                 'constraints' => new Length(
@@ -52,9 +52,9 @@ class UserType extends AbstractType
                 )
             ])
             ->add('prenom', TextType::class, [
-                'label'       => 'Votre nom',
+                'label'       => 'Votre prénom',
                 'attr'        => [
-                    'placeholder' => 'Merci de saisir votre nom.'
+                    'placeholder' => 'Merci de saisir votre prénom.'
                 ],
                 'required'    => true,
                 'constraints' => [

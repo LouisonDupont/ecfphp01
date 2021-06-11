@@ -9,6 +9,6 @@
 </style>
 
     {% if is_granted("ROLE_USER") %}
-        Hi !
+        Hi {{ app.user.prenom }} {{ app.user.nom }}!
     {% endif %}
 {% endblock %}
