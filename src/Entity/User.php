@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -44,6 +46,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $nom;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Competences::class, inversedBy="users")
+     */
+    private $Competences;
+
+    public function __construct()
+    {
+        $this->Competences = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +71,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->email = $email;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
     }
 
     /**
@@ -150,6 +167,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Competences[]
+     */
+    public function getCompetences(): Collection
+    {
+        return $this->Competences;
+    }
+
+    public function addCompetence(Competences $competence): self
+    {
+        if (!$this->Competences->contains($competence)) {
+            $this->Competences[] = $competence;
+        }
+
+        return $this;
+    }
+
+    public function removeCompetence(Competences $competence): self
+    {
+        $this->Competences->removeElement($competence);
 
         return $this;
     }

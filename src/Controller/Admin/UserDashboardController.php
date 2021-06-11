@@ -2,7 +2,11 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Category;
+use App\Entity\Competences;
+use App\Entity\Mission;
 use App\Entity\User;
+use App\Repository\UserRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -13,13 +17,20 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserDashboardController extends AbstractDashboardController
 {
+
+
+    private UserRepository $userRepository;
+
+    public function __construct(UserRepository $userRepository){
+        $this -> userRepository = $userRepository;
+    }
     /**
      * @IsGranted("ROLE_ADMIN")
      * @Route("/admin", name="admin")
      */
     public function index(): Response
     {
-        return parent::index();
+        return $this->render("dashboard_view/User_dashboard.html.twig", ["user"=>$this->userRepository->findByProut('Dupont')]);
     }
 
     public function configureAssets(): Assets
@@ -36,6 +47,9 @@ class UserDashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('The Label', 'fas fa-list', User::class);
+        yield MenuItem::linkToCrud('Utilisateur', 'fas fa-list', User::class);
+        yield MenuItem::linkToCrud('Missions', 'fas fa-list', Mission::class);
+        yield MenuItem::linkToCrud('Compétences', 'fas fa-list', Competences::class);
+        yield MenuItem::linkToCrud('Catégorie', 'fas fa-list', Category::class);
     }
 }

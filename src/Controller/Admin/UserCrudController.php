@@ -7,6 +7,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -20,9 +23,18 @@ class UserCrudController extends AbstractCrudController
         return [
             EmailField::new('email', 'Adresse e-mail')
                 ->addCssClass('font-weight-light font-italic'),
-            TextField::new('firstname', 'Prénom'),
-            TextField::new('lastname', 'Nom'),
+            TextField::new('prenom', 'Prénom'),
+            TextField::new('nom', 'Nom'),
             ArrayField::new('roles', 'Rôle attribué')
         ];
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            // ...
+            ->add(Crud::PAGE_INDEX, Action::DETAIL)
+            ->remove(Crud::PAGE_DETAIL, Action::DELETE)
+            ;
     }
 }
