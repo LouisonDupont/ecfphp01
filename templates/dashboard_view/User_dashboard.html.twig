@@ -1,6 +1,42 @@
+
 {% extends '@EasyAdmin/page/content.html.twig' %}
 
 {% block main %}
+
+{% if is_granted("ROLE_USER") %}
+    <h1 class="dashboard_message">Heureux de vous revoir <span>{{ app.user.prenom }} {{ app.user.nom }}</span> !</h1>
+
+    <section class="candidat_container">
+        <h2>Profil</h2>
+        <div class="candidat_left_content">
+            <div class="identite">
+                <p class="candidat_prenom">{{ app.user.prenom }}</p>
+                <p class="candidat_nom">{{ app.user.nom }}</p>
+            </div>
+            <div class="adresse">
+                <p class="candidat_adresse"></p>
+                <p class="candidat_codepost"></p>
+                <p class="candidat_ville"></p>
+            </div>
+            <div class="coordonnees">
+                <p class="candidat_mail">{{ app.user.email }}</p>
+                <p class="candidat_tel"></p>
+            </div>
+        </div>
+        <div class="candidat_right_content">
+        <div class="menu_candidat">
+            <p>Compétences</p>
+        </div>
+        <div class="menu_content_candidat">
+
+        </div>
+        </div>
+    </section>
+
+
+{% endif %}
+
+{% if is_granted("ROLE_ADMIN") %}
     Nombre d'utilisateurs :
     {{ user['value'] }}
 
@@ -11,17 +47,19 @@
             <li>{{ competences.name}}</li>
         </ul>
     {% endfor %}
-{% for user in userlist%}
-    <ul>
-        <li>{{ user.prenom}} {{ user.nom}}</li>
-    </ul>
-{% endfor %}
+    {% for user in userlist%}
+        <ul>
+            <li>{{ user.prenom}} {{ user.nom}}</li>
+        </ul>
+    {% endfor %}
 
     Derniers utilisateurs :
 
-{% for user in lastUser%}
-    <ul>
-        <li>{{ user.prenom}} {{ user.nom}}</li>
-    </ul>
-{% endfor %}
+    {% for user in lastUser%}
+        <ul>
+            <li>{{ user.prenom}} {{ user.nom}}</li>
+        </ul>
+    {% endfor %}
+{% endif %}
+
 {% endblock main %}

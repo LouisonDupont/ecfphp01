@@ -7,8 +7,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class EasyAdminSubscriber implements EventSubscriberInterface
 {
     public static function getSubscribedEvents()
-    {
-        return [
+   {return [
             BeforeEntityPersistedEvent::class => ['setUserAddedDate'],
             BeforeEntityUpdatedEvent::class => ['setUpdateUserAddedDate'],
         ];
@@ -17,16 +16,16 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         $entity = $event->getEntityInstance();
         if(!($entity instanceof User)){
             return;
-        }
+       }
         $now = new \DateTime('now');
         $entity->setCreateAt($now);
     }
-//    public function setUpdateUserAddedDate(BeforeEntityUpdatedEvent $event){
-//        $entity = $event->getEntityInstance();
-//        if(!($entity instanceof User)){
-//            return;
-//        }
-//        $now = new \DateTime('now');
-//        $entity->setModifiedAt($now);
-//    }
+    public function setUpdateUserAddedDate(BeforeEntityUpdatedEvent $event){
+        $entity = $event->getEntityInstance();
+        if(!($entity instanceof User)){
+            return;
+        }
+        $now = new \DateTime('now');
+        $entity->setModifiedAt($now);
+    }
 }

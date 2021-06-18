@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -15,6 +17,7 @@ use Symfony\Component\Validator\Constraints\Length;
 
 class UserType extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -73,6 +76,12 @@ class UserType extends AbstractType
                     )
                 ]
             ])
+            /*->add('createAt', DateTimeType::class, [
+                'input' => 'datetime'
+            ])*/
+            /*->add('roles', CollectionType::class, [
+               'entry_type' => "ROLE_CANDIDAT"
+            ])*/
             ->add('register', SubmitType::class, [
                 'label' => 'S\'inscrire',
                 'attr' => [

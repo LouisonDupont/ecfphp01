@@ -32,7 +32,7 @@ class UserDashboardController extends AbstractDashboardController
 
 
     /**
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_USER")
      * @Route("/admin", name="admin")
      */
     public function index(): Response
@@ -62,15 +62,21 @@ class UserDashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Ecfphp01');
+            ->setTitle('Alderaan');
     }
 
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Utilisateur', 'fas fa-list', User::class);
-        yield MenuItem::linkToCrud('Missions', 'fas fa-list', Mission::class);
-        yield MenuItem::linkToCrud('Compétences', 'fas fa-list', Competences::class);
-        yield MenuItem::linkToCrud('Catégorie', 'fas fa-list', Category::class);
+        yield MenuItem::linkToCrud('Missions', 'fas fa-list', Mission::class)
+        ->setPermission("ROLE_ADMIN")
+        ;
+        yield MenuItem::linkToCrud('Compétences', 'fas fa-list', Competences::class)
+        ->setPermission("ROLE_ADMIN")
+        ;
+        yield MenuItem::linkToCrud('Catégorie', 'fas fa-list', Category::class)
+        ->setPermission("ROLE_ADMIN")
+        ;
     }
 }

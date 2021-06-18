@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -51,10 +52,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $Competences;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createAt;
+//    /**
+//     * * @var datetime $createAt
+//     *
+//     * @ORM\Column(type="datetime")
+//     */
+//    protected $createAt;
 
     public function __construct()
     {
@@ -200,15 +203,43 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCreateAt(): ?\DateTimeInterface
-    {
-        return $this->createAt;
-    }
+//    public function getCreateAt(): DateTime
+//    {
+//        return $this->createAt;
+//    }
+//
+//    public function setCreateAt(\DateTimeInterface $createAt): self
+//    {
+//        $this->createAt = $createAt;
+//
+//        return $this;
+//    }
 
-    public function setCreateAt(\DateTimeInterface $createAt): self
-    {
-        $this->createAt = $createAt;
+//    /**
+//     * @var datetime $updated
+//     *
+//     * @ORM\Column(type="datetime", nullable = true)
+//     */
+//    protected $updated;
 
-        return $this;
-    }
+
+    /**
+     * Gets triggered only on insert
+
+     * @ORM\PrePersist
+     */
+//    public function onPrePersist()
+//    {
+//        $this->createAt = new \DateTime("now");
+//    }
+
+//    /**
+//     * Gets triggered every time on update
+//
+//     * @ORM\PreUpdate
+//     */
+//    public function onPreUpdate()
+//    {
+//        $this->updated = new \DateTime("now");
+//    }
 }
