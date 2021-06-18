@@ -3,9 +3,31 @@
   color: $red;
 }
 .candidat_container{
-  width: 20%;
+  display: flex;
   h2{
-    color: $red;
+    color: #E8464E;
     font-size: 1rem;
   }
+  .candidat_left_content{
+    width: 20%;
+    background-color: $blu-d;
+  }
+  .candidat_right_content{
+    width: 80%;
+    background-color: $blu-c;
+  }
+}
+
+.main-header{
+  width: 100%;
+  max-width: var(--body-max-width);
+}
+
+.main-sidebar{
+  background-color: $red;
+}
+
+body{
+  background: rgb(175,208,219);
+  background: linear-gradient(90deg, rgba(175,208,219,1) 0%, rgba(75,113,150,1) 100%);
 }

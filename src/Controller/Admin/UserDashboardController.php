@@ -67,8 +67,13 @@ class UserDashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Utilisateur', 'fas fa-list', User::class);
+        yield MenuItem::linktoDashboard('Tableau de bord', 'fa fa-home');
+        yield MenuItem::linkToCrud('Profil', 'fa fa-home', User::class)
+//        ->setAction("edit")
+        ;
+        yield MenuItem::linkToCrud('Utilisateur', 'fas fa-list', User::class)
+        ->setPermission("ROLE_COMMERCIAL")
+        ;
         yield MenuItem::linkToCrud('Missions', 'fas fa-list', Mission::class)
         ->setPermission("ROLE_ADMIN")
         ;

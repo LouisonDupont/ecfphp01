@@ -1,14 +1,12 @@
-
 {% extends '@EasyAdmin/page/content.html.twig' %}
-
 {% block main %}
 
 {% if is_granted("ROLE_USER") %}
     <h1 class="dashboard_message">Heureux de vous revoir <span>{{ app.user.prenom }} {{ app.user.nom }}</span> !</h1>
 
     <section class="candidat_container">
-        <h2>Profil</h2>
         <div class="candidat_left_content">
+            <h2>Profil</h2>
             <div class="identite">
                 <p class="candidat_prenom">{{ app.user.prenom }}</p>
                 <p class="candidat_nom">{{ app.user.nom }}</p>
@@ -25,7 +23,9 @@
         </div>
         <div class="candidat_right_content">
         <div class="menu_candidat">
-            <p>Compétences</p>
+            <p>Compétences :</p>
+
+
         </div>
         <div class="menu_content_candidat">
 
