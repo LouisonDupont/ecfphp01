@@ -21,7 +21,8 @@ class UserType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => 'Votre adresse mail',
                 'attr'  => [
-                    'placeholder' => 'Merci de saisir votre adresse mail.'
+                    'placeholder' => 'Merci de saisir votre adresse mail.',
+                    'class' => 'form-control mb-3'
                 ],
                 'required'    => true
             ])
@@ -31,17 +32,22 @@ class UserType extends AbstractType
                 'required'        => true,
                 'first_options'   => [
                     'label' => 'Mot de passe',
-                    'attr'  => ['placeholder' => 'Merci de saisir votre mot de passe.']
+                    'attr'  => ['placeholder' => 'Merci de saisir votre mot de passe.',
+                                'class' => 'form-control mb-3'
+                    ]
                 ],
                 'second_options'  => [
                     'label' => 'Confirmez votre mot de passe',
-                    'attr'  => ['placeholder' => 'Merci de confirmer votre mot de passe.']
+                    'attr'  => ['placeholder' => 'Merci de confirmer votre mot de passe.',
+                                'class' => 'form-control mb-3'
+                    ]
                 ]
             ])
             ->add('nom', TextType::class, [
                 'label'       => 'Votre nom',
                 'attr'        => [
-                    'placeholder' => 'Merci de saisir votre nom.'
+                    'placeholder' => 'Merci de saisir votre nom.',
+                    'class' => 'form-control mb-3'
                 ],
                 'required'    => true,
                 'constraints' => new Length(
@@ -54,7 +60,8 @@ class UserType extends AbstractType
             ->add('prenom', TextType::class, [
                 'label'       => 'Votre prénom',
                 'attr'        => [
-                    'placeholder' => 'Merci de saisir votre prénom.'
+                    'placeholder' => 'Merci de saisir votre prénom.',
+                    'class' => 'form-control mb-3'
                 ],
                 'required'    => true,
                 'constraints' => [
@@ -67,7 +74,10 @@ class UserType extends AbstractType
                 ]
             ])
             ->add('register', SubmitType::class, [
-                'label' => 'S\'inscrire'
+                'label' => 'S\'inscrire',
+                'attr' => [
+                    'class' => 'alde_button'
+                ],
             ]);
         ;
 

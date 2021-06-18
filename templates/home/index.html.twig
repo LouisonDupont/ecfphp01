@@ -1,14 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{#    {% if is_granted("ROLE_USER") %}#}
+{#        Hi {{ app.user.prenom }} {{ app.user.nom }}!#}
+{#    {% endif %}#}
 
-    {% if is_granted("ROLE_USER") %}
-        Hi {{ app.user.prenom }} {{ app.user.nom }}!
-    {% endif %}
+    <section class="welcome">
+        <div class="container welcome_content">
+            <div class="welcome_content_left">
+                <h2>Bienvenue sur <span>Alderaan</span></h2>
+                <p class="welcome_baseline">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto
+                    deserunt fugiat hic itaque pariatur repudiandae voluptatem! Fuga ipsa quae quibusdam.</p>
+                <div class="button_container">
+                    <a class="alde_button" href="{{ path('app_login') }}">Se connecter</a>
+                    <a class="alde_button" href="{{ path('register') }}">S'inscrire</a>
+                </div>
+            </div>
+            <div class="welcome_content_right">
+                <img src="{{ asset('images/logo.png') }}" alt="image représentant le personnage Kadoc">
+            </div>
+        </div>
+    </section>
+
 {% endblock %}

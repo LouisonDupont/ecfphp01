@@ -6,6 +6,7 @@ use App\Entity\Category;
 use App\Entity\Competences;
 use App\Entity\Mission;
 use App\Entity\User;
+use App\Repository\CompetencesRepository;
 use App\Repository\UserRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -20,17 +21,37 @@ class UserDashboardController extends AbstractDashboardController
 
 
     private UserRepository $userRepository;
+    private CompetencesRepository $CompetencesRepository ;
 
-    public function __construct(UserRepository $userRepository){
+    // Ici je dit quelle entité je souhaite utilisé, ici, la userRepository
+
+    public function __construct(UserRepository $userRepository, CompetencesRepository $CompetencesRepository){
         $this -> userRepository = $userRepository;
+        $this -> CompetencesRepository = $CompetencesRepository;
     }
+
+
     /**
      * @IsGranted("ROLE_ADMIN")
      * @Route("/admin", name="admin")
      */
     public function index(): Response
     {
-        return $this->render("dashboard_view/User_dashboard.html.twig", ["user"=>$this->userRepository->findByProut('Dupont')]);
+//        return $this->render("dashboard_view/User_dashboard.html.twig", ["user"=>$this->userRepository->findByProut('Dupont')]);
+
+        $categories = $this->getDoctrine()->getRepository(Category::class)->count([]);
+        $competences = $this->getDoctrine()->getRepository(Competences::class)->count([]);
+        $missions = $this->getDoctrine()->getRepository(Mission::class)->count([]);
+
+        return $this->render('dashboard_view/User_dashboard.html.twig', [
+            'categories' => $categories,
+            'competences' => $competences,
+            'competenceDis' => $this -> CompetencesRepository -> findAll(),
+            'Missions' => $missions,
+            'user' =>$this->userRepository->findById(),
+            'userlist' => $this->userRepository ->findAll(),
+            'lastUser'  => $this->userRepository ->findByLastUser()
+        ]);
     }
 
     public function configureAssets(): Assets

@@ -51,6 +51,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $Competences;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createAt;
+
     public function __construct()
     {
         $this->Competences = new ArrayCollection();
@@ -191,6 +196,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeCompetence(Competences $competence): self
     {
         $this->Competences->removeElement($competence);
+
+        return $this;
+    }
+
+    public function getCreateAt(): ?\DateTimeInterface
+    {
+        return $this->createAt;
+    }
+
+    public function setCreateAt(\DateTimeInterface $createAt): self
+    {
+        $this->createAt = $createAt;
 
         return $this;
     }

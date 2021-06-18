@@ -1,8 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Se connecter{% endblock %}
 
 {% block body %}
+
+    <header>
+        <div class="header_left_content">
+            <a href="{{ path('home') }}"><img src="{{ asset('images/left.svg') }}" alt="Icone d'une fleche précédente">Retour à l'accueil</a>
+        </div>
+        <div class="header_right_content">
+            <p>Vous n'êtes pas encore inscrit ? <a href="{{ path('register') }}">C'est par ici</a></p>
+        </div>
+
+    </header>
+
+    <section class="login_container">
+
+        <h1 class="h3 mb-3 font-weight-normal">Indiquez vos identifiants de connexion :</h1>
+
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -14,10 +29,9 @@
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
+    <label for="inputEmail">Email :</label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
+    <label for="inputPassword">Mot de passe :</label>
     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
     <input type="hidden" name="_csrf_token"
@@ -35,8 +49,11 @@
         </div>
     #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
+    <button class="alde_button" type="submit">
+        Se connecter
     </button>
 </form>
+
+    </section>
+
 {% endblock %}

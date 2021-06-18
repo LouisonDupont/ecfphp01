@@ -1,7 +1,27 @@
 {% extends '@EasyAdmin/page/content.html.twig' %}
 
 {% block main %}
-{% for user in user%}
-{{ user }}
+    Nombre d'utilisateurs :
+    {{ user['value'] }}
+
+    Nombre de compétences :
+    {{ competences}}
+    {% for competences in competenceDis%}
+        <ul>
+            <li>{{ competences.name}}</li>
+        </ul>
     {% endfor %}
+{% for user in userlist%}
+    <ul>
+        <li>{{ user.prenom}} {{ user.nom}}</li>
+    </ul>
+{% endfor %}
+
+    Derniers utilisateurs :
+
+{% for user in lastUser%}
+    <ul>
+        <li>{{ user.prenom}} {{ user.nom}}</li>
+    </ul>
+{% endfor %}
 {% endblock main %}

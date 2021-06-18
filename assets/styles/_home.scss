@@ -1,0 +1,48 @@
+.welcome{
+  min-height: 100vh;
+  display: flex;
+  padding: 15vh 2rem;
+  background: rgb(175,208,219);
+  background: linear-gradient(90deg, rgba(175,208,219,1) 0%, rgba(75,113,150,1) 100%);
+  .welcome_content{
+    display: flex;
+
+    .welcome_content_left{
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      h2{
+
+        margin-bottom: 2rem;
+        font-weight: 900;
+        font-size: 5rem;
+        color: $blu-l;
+      }
+      .welcome_baseline{
+        color: $blu-c;
+      }
+
+      .button_container{
+        margin-top: 5rem;
+        display: flex;
+
+
+        .alde_button:first-child{
+          margin-right: 2rem;
+        }
+      }
+
+    }
+    .welcome_content_right{
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img{
+        width: 400px;
+      }
+    }
+  }
+}

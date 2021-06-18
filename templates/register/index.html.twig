@@ -1,12 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RegisterController!{% endblock %}
+{% block title %}S'inscrire{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-    {{ form(form) }}
+    <header>
+        <div class="header_left_content">
+            <a href="{{ path('home') }}"><img src="{{ asset('images/left.svg') }}" alt="Icone d'une fleche précédente">Retour à l'accueil</a>
+        </div>
+        <div class="header_right_content">
+            <p>Déjà un compte ? <a href="{{ path('app_login') }}">Se connecter</a></p>
+        </div>
+
+    </header>
+
+    <section class="register_container">
+
+        <h2>Inscription</h2>
+
+        <div class="register_form_container">
+
+    {{ form_start(form_register) }}
+
+    <div class="row">
+        <div class="col mb-3">
+            {{ form_row(form_register.prenom) }}
+        </div>
+        <div class="col mb-3">
+            {{ form_row(form_register.nom) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            {{ form_row(form_register.email) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            {{ form_row(form_register.password) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3 button_box">
+            {{ form_row(form_register.register) }}
+        </div>
+    </div>
+
+    {{ form_end(form_register) }}
+        </div>
+
+    </section>
+
 {% endblock %}
