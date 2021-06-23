@@ -52,6 +52,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $Competences;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $telephone;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $ville;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $adresse;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $codepostal;
+
 //    /**
 //     * * @var datetime $createAt
 //     *
@@ -242,4 +262,59 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 //    {
 //        $this->updated = new \DateTime("now");
 //    }
+
+public function getTelephone(): ?string
+{
+    return $this->telephone;
+}
+
+public function setTelephone(string $telephone): self
+{
+    $this->telephone = $telephone;
+
+    return $this;
+}
+
+public function getVille(): ?string
+{
+    return $this->ville;
+}
+
+public function setVille(string $ville): self
+{
+    $this->ville = $ville;
+
+    return $this;
+}
+
+public function getAdresse(): ?string
+{
+    return $this->adresse;
+}
+
+public function setAdresse(string $adresse): self
+{
+    $this->adresse = $adresse;
+
+    return $this;
+}
+
+public function getCodepostal(): ?string
+{
+    return $this->codepostal;
+}
+
+public function setCodepostal(string $codepostal): self
+{
+    $this->codepostal = $codepostal;
+
+    return $this;
+}
+
+    public function setCreateAt(\DateTime $now)
+    {
+    }
+      public function setModifiedAt(\DateTime $now)
+    {
+    }
 }

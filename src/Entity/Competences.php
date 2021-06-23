@@ -56,6 +56,11 @@ class Competences
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     public function getY(): ?Category
     {
         return $this->y;

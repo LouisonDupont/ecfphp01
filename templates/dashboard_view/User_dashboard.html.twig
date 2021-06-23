@@ -6,27 +6,64 @@
 
     <section class="candidat_container">
         <div class="candidat_left_content">
-            <h2>Profil</h2>
+            <h2 class="titre_profil">Profil</h2>
             <div class="identite">
-                <p class="candidat_prenom">{{ app.user.prenom }}</p>
-                <p class="candidat_nom">{{ app.user.nom }}</p>
+                <img src="{{ asset('images/avatar.png') }}">
+                <div class="candidat_content_box">
+                    <p class="candidat_info">Prenom :</p>
+                    <p class="candidat_prenom">{{ app.user.prenom }}</p>
+                </div>
+                <div class="candidat_content_box">
+                    <p class="candidat_info">Nom :</p>
+                    <p class="candidat_nom">{{ app.user.nom }}</p>
+                </div>
+
             </div>
             <div class="adresse">
-                <p class="candidat_adresse"></p>
-                <p class="candidat_codepost"></p>
-                <p class="candidat_ville"></p>
+                <div class="candidat_content_box">
+                    <p class="candidat_info">Adresse :</p>
+                    <p class="candidat_adresse">{{ app.user.adresse }}</p>
+                </div>
+                <div class="candidat_content_box">
+                    <p class="candidat_info">Code Postal :</p>
+                    <p class="candidat_codepost">{{ app.user.codepostal }}</p>
+                </div>
+                <div class="candidat_content_box">
+                    <p class="candidat_info">Ville :</p>
+                    <p class="candidat_ville">{{ app.user.ville }}</p>
+                </div>
             </div>
             <div class="coordonnees">
-                <p class="candidat_mail">{{ app.user.email }}</p>
-                <p class="candidat_tel"></p>
+                <div class="candidat_content_box">
+                    <p class="candidat_info">Email :</p>
+                    <p class="candidat_mail">{{ app.user.email }}</p>
+                </div>
+                <div class="candidat_content_box">
+                    <p class="candidat_info">Téléphone :</p>
+                    <p class="candidat_tel">{{ app.user.telephone }}</p>
+                </div>
             </div>
         </div>
         <div class="candidat_right_content">
-        <div class="menu_candidat">
-            <p>Compétences :</p>
+            <div class="menu_candidat">
+                <h2>Compétences :</h2>
+    {#            {{ competenceDis[0].name}}#}
+
+                {% for comp in app.user.competences%}
+
+                    <h3>Catégories : {{ comp.y.name}}</h3>
+
+                    <ul>
+                        <li>{{ comp.name}}</li>
+                    </ul>
+                {% endfor %}
 
 
-        </div>
+
+
+
+
+            </div>
         <div class="menu_content_candidat">
 
         </div>
@@ -47,6 +84,8 @@
             <li>{{ competences.name}}</li>
         </ul>
     {% endfor %}
+
+
     {% for user in userlist%}
         <ul>
             <li>{{ user.prenom}} {{ user.nom}}</li>

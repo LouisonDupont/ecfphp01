@@ -2,9 +2,11 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Competences;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -29,9 +31,15 @@ class UserCrudController extends AbstractCrudController
             TextField::new('password', 'Mot de passe'),
             TextField::new('prenom', 'Prénom'),
             TextField::new('nom', 'Nom'),
-            ArrayField::new('roles', 'Rôle attribué')/*
-            DateTimeField::new('createAt')
-            ->onlyOnIndex()*/
+            TextField::new('adresse', 'Adresse'),
+            TextField::new('codepostal', 'Code Postal'),
+            TextField::new('ville', 'Ville'),
+            TextField::new('telephone', 'Numéro de téléphone'),
+            ArrayField::new('roles', 'Rôle attribué')
+                ->setPermission('ROLE_ADMIN'),
+            AssociationField::new('Competences','Competences')
+//            DateTimeField::new('createAt')
+//            ->onlyOnIndex()*/
         ];
     }
 

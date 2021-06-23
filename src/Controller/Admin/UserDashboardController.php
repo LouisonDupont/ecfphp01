@@ -31,6 +31,7 @@ class UserDashboardController extends AbstractDashboardController
     }
 
 
+
     /**
      * @IsGranted("ROLE_USER")
      * @Route("/admin", name="admin")
@@ -38,6 +39,7 @@ class UserDashboardController extends AbstractDashboardController
     public function index(): Response
     {
 //        return $this->render("dashboard_view/User_dashboard.html.twig", ["user"=>$this->userRepository->findByProut('Dupont')]);
+
 
         $categories = $this->getDoctrine()->getRepository(Category::class)->count([]);
         $competences = $this->getDoctrine()->getRepository(Competences::class)->count([]);
@@ -67,9 +69,13 @@ class UserDashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
+
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
         yield MenuItem::linktoDashboard('Tableau de bord', 'fa fa-home');
-        yield MenuItem::linkToCrud('Profil', 'fa fa-home', User::class)
-//        ->setAction("edit")
+        yield MenuItem::linkToCrud('Mon profil', 'fas fa-list', User::class)
+            ->setAction('edit')
+            ->setEntityId($user->getId())
         ;
         yield MenuItem::linkToCrud('Utilisateur', 'fas fa-list', User::class)
         ->setPermission("ROLE_COMMERCIAL")

@@ -1,21 +1,57 @@
+.wrapper{
+  background-color: white;
+}
+
 .dashboard_message{
-  font-size: 2rem;
+  font-size: 3rem;
   color: $red;
+  margin-bottom: 2rem;
 }
 .candidat_container{
   display: flex;
   h2{
     color: #E8464E;
-    font-size: 1rem;
+    font-size: 2rem;
+    margin-bottom: 1rem;
   }
   .candidat_left_content{
+    padding: 2rem 1rem;
     width: 20%;
-    background-color: $blu-d;
+    border: 1px solid $blu-d;
+
+    .identite{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      img{
+        max-width: 100px;
+        align-self: center;
+        margin-bottom: 1rem;
+      }
+
+    }
   }
   .candidat_right_content{
+    padding: 2rem 1rem;
     width: 80%;
-    background-color: $blu-c;
+    border: 1px solid $blu-c;
+
+    h2{
+      color: #E8464E;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
   }
+}
+
+.candidat_content_box{
+  display: flex;
+  margin-bottom: .5rem;
+}
+
+.candidat_info{
+  margin-right: 1rem;
 }
 
 .main-header{
