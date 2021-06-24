@@ -115,7 +115,7 @@ class UserType extends AbstractType
                'entry_type' => "ROLE_CANDIDAT"
             ])*/
             ->add('register', SubmitType::class, [
-                'label' => 'S\'inscrire',
+                'label' => 'Enregistrer',
                 'attr' => [
                     'class' => 'alde_button'
                 ],

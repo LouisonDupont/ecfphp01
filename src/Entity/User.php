@@ -72,6 +72,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $codepostal;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Experiences::class, mappedBy="user")
+     */
+    private $experiences;
+
+
 //    /**
 //     * * @var datetime $createAt
 //     *
@@ -82,6 +88,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->Competences = new ArrayCollection();
+        $this->experiences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -317,4 +324,34 @@ public function setCodepostal(string $codepostal): self
       public function setModifiedAt(\DateTime $now)
     {
     }
+
+      /**
+       * @return Collection|Experiences[]
+       */
+      public function getExperiences(): Collection
+      {
+          return $this->experiences;
+      }
+
+      public function addExperience(Experiences $experience): self
+      {
+          if (!$this->experiences->contains($experience)) {
+              $this->experiences[] = $experience;
+              $experience->setUser($this);
+          }
+
+          return $this;
+      }
+
+      public function removeExperience(Experiences $experience): self
+      {
+          if ($this->experiences->removeElement($experience)) {
+              // set the owning side to null (unless already changed)
+              if ($experience->getUser() === $this) {
+                  $experience->setUser(null);
+              }
+          }
+
+          return $this;
+      }
 }

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+    <h2>Mes informations : </h2>
+    <ul>
+        {{ dump() }}
+        <li>id : {{ user.id }}</li>
+        <li>nom : {{ user.nom }}</li>
+        <li>prenom : {{ user.prenom }}</li>
+        <li>email : {{ user.email }}</li>
+        <li>adresse : {{ user.adresse }}</li>
+        <li>ville : {{ user.ville }}</li>
+        <li>code postal : {{ user.codepostal }}</li>
+        <li>telephone : {{ user.telephone }}</li>
+        {#    {{ app.user.roles }}#}
+        {#        <li>password : {{ app.user.password }}</li>#}
+    </ul>
+
+
+{% endblock %}

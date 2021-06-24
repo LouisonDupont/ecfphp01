@@ -55,6 +55,10 @@
                 .setController('App\\Controller\\Admin\\UserCrudController')
                 .setAction('index')
             %}
+            {% set detail = ea_url()
+                .setController('App\\Controller\\Admin\\UserCrudController')
+                .setAction('detail')
+            %}
 
             <div class="admin_content">
                 <div class="admin_users">
@@ -66,7 +70,8 @@
 
                     {% for user in lastUser%}
                         <ul class="admin_users_list">
-                            <li>{{ user.prenom}} {{ user.nom}}</li>
+{#                            <li><a href="{{ detail }}">{{ user.prenom}} {{ user.nom}}</a></li>#}
+                            <li><a href="{{ path('show', {'id': user.id})}}">{{ user.prenom}} {{ user.nom}}</a></li>
                         </ul>
                     {% endfor %}
                     <a href="{{ urlview }}" class="admin_btn" style="margin-top: 1rem;">Voir les utilisateurs</a>
@@ -95,9 +100,9 @@
                 {#                    {% endfor %}#}
                 {#                {% endfor %}#}
 
-                {% for comp in app.user.competences%}
+                <h2>Compétences :</h2>
 
-                    <h2>Compétences :</h2>
+                {% for comp in app.user.competences%}
 
                     <h3>Catégories : {{ comp.y.name}}</h3>
 
@@ -108,7 +113,15 @@
 
                 {% if is_granted("ROLE_COLLABORATEUR") %}
 
-                    {{ dump() }}
+
+
+                    {% for xp in app.user.experiences%}
+
+                        <h2>Experiences :</h2>
+
+                        <p>{{ xp.name}}</p>
+
+                    {% endfor %}
 
                 {% endif %}
             </div>

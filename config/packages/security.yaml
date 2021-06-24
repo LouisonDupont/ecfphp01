@@ -34,12 +34,13 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/candidat, roles: ROLE_CANDIDAT }
+         - { path: ^/collaborateur, roles: ROLE_COLLABORATEUR }
+         - { path: ^/administrateur, roles: ROLE_ADMIN }
 
     role_hierarchy:
-        ROLE_CANDIDAT: ROLE_USER
-        ROLE_COLLABORATEUR: ROLE_CANDIDAT
-        ROLE_INDEPENDANT: ROLE_COLLABORATEUR
-        ROLE_COMMERCIAL: ROLE_INDEPENDANT
-        ROLE_ADMIN: ROLE_COMMERCIAL
+#        ROLE_CANDIDAT: ROLE_USER
+#        ROLE_COLLABORATEUR: ROLE_CANDIDAT
+#        ROLE_INDEPENDANT: ROLE_COLLABORATEUR
+#        ROLE_COMMERCIAL: ROLE_INDEPENDANT
+#         ROLE_ADMIN: ROLE_COLLABORATEUR

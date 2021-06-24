@@ -27,17 +27,26 @@ class UserCrudController extends AbstractCrudController
     {
         return [
             EmailField::new('email', 'Adresse e-mail')
-                ->addCssClass('font-weight-light font-italic'),
-            TextField::new('password', 'Mot de passe'),
-            TextField::new('prenom', 'Prénom'),
-            TextField::new('nom', 'Nom'),
-            TextField::new('adresse', 'Adresse'),
-            TextField::new('codepostal', 'Code Postal'),
-            TextField::new('ville', 'Ville'),
-            TextField::new('telephone', 'Numéro de téléphone'),
+                ->addCssClass('font-weight-light font-italic')
+                ->setPermission('ROLE_ADMIN'),
+            TextField::new('password', 'Mot de passe')
+                ->setPermission('ROLE_ADMIN'),
+            TextField::new('prenom', 'Prénom')
+                ->setPermission('ROLE_ADMIN'),
+            TextField::new('nom', 'Nom')
+                ->setPermission('ROLE_ADMIN'),
+            TextField::new('adresse', 'Adresse')
+                ->setPermission('ROLE_ADMIN'),
+            TextField::new('codepostal', 'Code Postal')
+                ->setPermission('ROLE_ADMIN'),
+            TextField::new('ville', 'Ville')
+                ->setPermission('ROLE_ADMIN'),
+            TextField::new('telephone', 'Numéro de téléphone')
+                ->setPermission('ROLE_ADMIN'),
             ArrayField::new('roles', 'Rôle attribué')
                 ->setPermission('ROLE_ADMIN'),
             AssociationField::new('Competences','Competences')
+                ->setPermission('ROLE_COLLABORATEUR'),
 //            DateTimeField::new('createAt')
 //            ->onlyOnIndex()*/
         ];
@@ -49,7 +58,8 @@ class UserCrudController extends AbstractCrudController
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
             ->remove(Crud::PAGE_DETAIL, Action::DELETE)
             ->setPermission(Action::DELETE, 'ROLE_ADMIN')
-            ->setPermission(Action::DETAIL, 'ROLE_COMMERCIAL')
+            ->setPermission(Action::DETAIL, 'ROLE_COLLABORATEUR')
+            ->setPermission(Action::DETAIL, 'ROLE_ADMIN')
             ->setPermission(Action::NEW, 'ROLE_ADMIN')
             ;
     }

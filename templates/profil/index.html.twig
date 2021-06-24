@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    {#    {% if is_granted("ROLE_USER") %}#}
+    {#        Hi {{ app.user.prenom }} {{ app.user.nom }}!#}
+    {#    {% endif %}#}
+
+    {% if is_granted("ROLE_ADMIN") %}
+
+        <p>Bienvenue Administrateur</p>
+        <a href="{{ path('admin')}}">ICI</a>
+
+
+    {% endif %}
+
+
+
+        <h2>JE SUIS {% if is_granted("ROLE_CANDIDAT") %}CANDIDAT{% endif %}{% if is_granted("ROLE_COLLABORATEUR") %}COLLABORATEUR{% endif %}</h2>
+
+
+
+    <h2>Mes informations : </h2>
+    <ul>
+        <li>id : {{ app.user.id }}</li>
+        <li>nom : {{ app.user.nom }}</li>
+        <li>prenom : {{ app.user.prenom }}</li>
+        <li>email : {{ app.user.email }}</li>
+        <li>adresse : {{ app.user.adresse }}</li>
+        <li>ville : {{ app.user.ville }}</li>
+        <li>code postal : {{ app.user.codepostal }}</li>
+        <li>telephone : {{ app.user.telephone }}</li>
+        {#    {{ app.user.roles }}#}
+        {#        <li>password : {{ app.user.password }}</li>#}
+    </ul>
+
+    <p>Modifier mes infos : <a href="{{ path('edit', {'id': app.user.id}) }}">ICI</a></p>
+
+   {% if is_granted("ROLE_COLLABORATEUR") %}
+
+       <h2>Mes compétences boucles : </h2>
+       <ul>
+           <li>{% for boucle in app.user.competences%}
+                   <ul>
+                       <li>{{ boucle.name}}</li>
+                   </ul>
+               {% endfor %}
+           </li>
+       </ul>
+
+   {% set coltoad = ea_url()
+           .setController('App\\Controller\\Admin\\UserCrudController')
+           .setAction('edit')
+   %}
+
+
+    <p>Ajouter une compétence : <a href="{{ coltoad }}">ICI</a></p>
+
+    {% endif %}
+
+
+
+{% endblock %}

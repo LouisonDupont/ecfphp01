@@ -34,6 +34,16 @@ class Competences
      */
     private $users;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $Appreciation;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $niveau;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -96,6 +106,30 @@ class Competences
         if ($this->users->removeElement($user)) {
             $user->removeCompetence($this);
         }
+
+        return $this;
+    }
+
+    public function getAppreciation(): ?bool
+    {
+        return $this->Appreciation;
+    }
+
+    public function setAppreciation(?bool $Appreciation): self
+    {
+        $this->Appreciation = $Appreciation;
+
+        return $this;
+    }
+
+    public function getNiveau(): ?int
+    {
+        return $this->niveau;
+    }
+
+    public function setNiveau(?int $niveau): self
+    {
+        $this->niveau = $niveau;
 
         return $this;
     }

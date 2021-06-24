@@ -75,14 +75,20 @@ class UserDashboardController extends AbstractDashboardController
 
         yield MenuItem::linktoDashboard('Tableau de bord', 'fa fa-home');
         yield MenuItem::linkToCrud('Mon profil', 'fa fa-user', User::class)
+            ->setAction('detail')
+            ->setEntityId($user->getId())
+            ->setPermission("ROLE_ADMIN")
+        ;
+        yield MenuItem::linkToCrud('Ajouter une compétence', 'fa fa-user', User::class)
             ->setAction('edit')
             ->setEntityId($user->getId())
+            ->setPermission("ROLE_COLLABORATEUR")
         ;
         yield MenuItem::linkToCrud('Experiences', 'fa fa-users', Experiences::class)
             ->setPermission("ROLE_COLLABORATEUR")
         ;
         yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-users', User::class)
-        ->setPermission("ROLE_COMMERCIAL")
+        ->setPermission("ROLE_ADMIN")
         ;
         yield MenuItem::linkToCrud('Missions', 'fa fa-calendar-minus-o', Mission::class)
         ->setPermission("ROLE_ADMIN")
