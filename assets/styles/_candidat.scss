@@ -1,23 +1,15 @@
-.wrapper{
-  background-color: white;
-}
-
-.dashboard_message{
-  font-size: 3rem;
-  color: $red;
-  margin-bottom: 2rem;
-}
 .candidat_container{
   display: flex;
   h2{
-    color: #E8464E;
+    color: $blu-d;
     font-size: 2rem;
     margin-bottom: 1rem;
   }
   .candidat_left_content{
     padding: 2rem 1rem;
-    width: 20%;
-    border: 1px solid $blu-d;
+    width: 30%;
+
+
 
     .identite{
       display: flex;
@@ -27,7 +19,7 @@
       img{
         max-width: 100px;
         align-self: center;
-        margin-bottom: 1rem;
+        margin-bottom: 3rem;
       }
 
     }
@@ -35,7 +27,8 @@
   .candidat_right_content{
     padding: 2rem 1rem;
     width: 80%;
-    border: 1px solid $blu-c;
+    display: flex;
+    flex-direction: column;
 
     h2{
       color: #E8464E;
@@ -52,18 +45,10 @@
 
 .candidat_info{
   margin-right: 1rem;
+  font-weight: 300;
 }
 
-.main-header{
-  width: 100%;
-  max-width: var(--body-max-width);
-}
-
-.main-sidebar{
-  background-color: $red;
-}
-
-body{
-  background: rgb(175,208,219);
-  background: linear-gradient(90deg, rgba(175,208,219,1) 0%, rgba(75,113,150,1) 100%);
+.titre_profil{
+  font-weight: 900;
+  text-transform: uppercase;
 }

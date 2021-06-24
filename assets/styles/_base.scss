@@ -24,6 +24,8 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   color: #000;
+  background: rgb(175,208,219);
+  background: linear-gradient(90deg, rgba(175,208,219,1) 0%, rgba(75,113,150,1) 100%);
 }
 /* Remove default margin */
 body,

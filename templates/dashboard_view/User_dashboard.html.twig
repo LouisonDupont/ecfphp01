@@ -45,17 +45,65 @@
             </div>
         </div>
         <div class="candidat_right_content">
+
+            {% if is_granted("ROLE_ADMIN") %}
+            {% set url = ea_url()
+                .setController('App\\Controller\\Admin\\UserCrudController')
+                .setAction('new')
+            %}
+            {% set urlsee = ea_url()
+                .setController('App\\Controller\\Admin\\UserCrudController')
+                .setAction('index')
+            %}
+                <div class="admin_content">
+                    <div class="admin_users">
+                        <p class="admin_users_title">{{ user['value'] }} Utilisateurs</p>
+                        <a href="{{ url }}" class="admin_btn">Ajouter un utilisateur</a>
+                    </div>
+                    <div class="admin_users_last">
+                       <p class="admin_users_title">Derniers utilisateurs :</p>
+
+                        {% for user in lastUser%}
+                            <ul class="admin_users_list">
+                                <li>{{ user.prenom}} {{ user.nom}}</li>
+                            </ul>
+                        {% endfor %}
+                        {% endif %}
+                        <a href="{{ urlsee }}" class="admin_btn" style="margin-top: 1rem;">Voir les utilisateurs</a>
+                    </div>
+
+                    {#                Nombre de compétences :#}
+                    {#                {{ competences}}#}
+                    {#                {% for competences in competenceDis%}#}
+                    {#                    <ul>#}
+                    {#                        <li>{{ competences.name}}</li>#}
+                    {#                    </ul>#}
+                    {#                {% endfor %}#}
+
+                </div>
+
             <div class="menu_candidat">
-                <h2>Compétences :</h2>
+
     {#            {{ competenceDis[0].name}}#}
+
+{#                {% for cat in app.user.competences%}#}
+{#                    <h3>Catégories : {{ cat.y.name}}</h3>#}
+{#                    {% for comp in app.user.competences%}#}
+{#                        <ul>#}
+{#                            <li>{{ comp.name}}</li>#}
+{#                        </ul>#}
+{#                    {% endfor %}#}
+{#                {% endfor %}#}
 
                 {% for comp in app.user.competences%}
 
+                    <h2>Compétences :</h2>
+
                     <h3>Catégories : {{ comp.y.name}}</h3>
 
-                    <ul>
+                   <ul>
                         <li>{{ comp.name}}</li>
-                    </ul>
+                   </ul>
                 {% endfor %}
 
 
@@ -71,34 +119,6 @@
     </section>
 
 
-{% endif %}
-
-{% if is_granted("ROLE_ADMIN") %}
-    Nombre d'utilisateurs :
-    {{ user['value'] }}
-
-    Nombre de compétences :
-    {{ competences}}
-    {% for competences in competenceDis%}
-        <ul>
-            <li>{{ competences.name}}</li>
-        </ul>
-    {% endfor %}
-
-
-    {% for user in userlist%}
-        <ul>
-            <li>{{ user.prenom}} {{ user.nom}}</li>
-        </ul>
-    {% endfor %}
-
-    Derniers utilisateurs :
-
-    {% for user in lastUser%}
-        <ul>
-            <li>{{ user.prenom}} {{ user.nom}}</li>
-        </ul>
-    {% endfor %}
 {% endif %}
 
 {% endblock main %}

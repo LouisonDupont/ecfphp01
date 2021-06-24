@@ -73,20 +73,20 @@ class UserDashboardController extends AbstractDashboardController
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
 
         yield MenuItem::linktoDashboard('Tableau de bord', 'fa fa-home');
-        yield MenuItem::linkToCrud('Mon profil', 'fas fa-list', User::class)
+        yield MenuItem::linkToCrud('Mon profil', 'fa fa-user', User::class)
             ->setAction('edit')
             ->setEntityId($user->getId())
         ;
-        yield MenuItem::linkToCrud('Utilisateur', 'fas fa-list', User::class)
+        yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-users', User::class)
         ->setPermission("ROLE_COMMERCIAL")
         ;
-        yield MenuItem::linkToCrud('Missions', 'fas fa-list', Mission::class)
+        yield MenuItem::linkToCrud('Missions', 'fa fa-calendar-minus-o', Mission::class)
         ->setPermission("ROLE_ADMIN")
         ;
-        yield MenuItem::linkToCrud('Compétences', 'fas fa-list', Competences::class)
+        yield MenuItem::linkToCrud('Compétences', 'fa fa-graduation-cap', Competences::class)
         ->setPermission("ROLE_ADMIN")
         ;
-        yield MenuItem::linkToCrud('Catégorie', 'fas fa-list', Category::class)
+        yield MenuItem::linkToCrud('Catégorie', 'fa fa-tags', Category::class)
         ->setPermission("ROLE_ADMIN")
         ;
     }
