@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Category;
 use App\Entity\Competences;
+use App\Entity\Experiences;
 use App\Entity\Mission;
 use App\Entity\User;
 use App\Repository\CompetencesRepository;
@@ -76,6 +77,9 @@ class UserDashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Mon profil', 'fa fa-user', User::class)
             ->setAction('edit')
             ->setEntityId($user->getId())
+        ;
+        yield MenuItem::linkToCrud('Experiences', 'fa fa-users', Experiences::class)
+            ->setPermission("ROLE_COLLABORATEUR")
         ;
         yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-users', User::class)
         ->setPermission("ROLE_COMMERCIAL")

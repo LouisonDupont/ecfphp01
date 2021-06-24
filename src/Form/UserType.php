@@ -76,6 +76,38 @@ class UserType extends AbstractType
                     )
                 ]
             ])
+            ->add('telephone', TextType::class, [
+                'label' => 'Votre numéro de téléphone',
+                'attr'  => [
+                    'placeholder' => 'Merci de saisir votre numéro de téléphone.',
+                    'class' => 'form-control mb-3'
+                ],
+                'required'    => true
+            ])
+            ->add('adresse', TextType::class, [
+                'label' => 'Votre adresse',
+                'attr'  => [
+                    'placeholder' => 'Merci de saisir votre adresse.',
+                    'class' => 'form-control mb-3'
+                ],
+                'required'    => true
+            ])
+            ->add('ville', TextType::class, [
+                'label' => 'Votre ville',
+                'attr'  => [
+                    'placeholder' => 'Merci de saisir votre ville.',
+                    'class' => 'form-control mb-3'
+                ],
+                'required'    => true
+            ])
+            ->add('codepostal', TextType::class, [
+                'label' => 'Votre code postal',
+                'attr'  => [
+                    'placeholder' => 'Merci de saisir votre code postal.',
+                    'class' => 'form-control mb-3'
+                ],
+                'required'    => true
+            ])
             /*->add('createAt', DateTimeType::class, [
                 'input' => 'datetime'
             ])*/
