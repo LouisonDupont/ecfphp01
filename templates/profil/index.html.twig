@@ -39,7 +39,7 @@
 
    {% if is_granted("ROLE_COLLABORATEUR") %}
 
-       <h2>Mes compétences boucles : </h2>
+       <h2>Mes compétences : </h2>
        <ul>
            <li>{% for boucle in app.user.competences%}
                    <ul>
@@ -57,7 +57,45 @@
 
     <p>Ajouter une compétence : <a href="{{ coltoad }}">ICI</a></p>
 
-    {% endif %}
+       <h2>Mes expériences : </h2>
+       <ul>
+           <li>{% for boucle in app.user.experiences%}
+
+                   <p>{{ boucle.name}}</p>
+                   <p>{{ boucle.entreprise}}</p>
+                   <p>{{ boucle.description}}</p>
+
+               {% endfor %}
+           </li>
+       </ul>
+
+       {% set coltoex = ea_url()
+           .setController('App\\Controller\\Admin\\ExperiencesCrudController')
+           .setAction('edit')
+       %}
+
+
+       <p>Ajouter une compétence : <a href="{{ coltoex }}">ICI</a></p>
+
+       <h2>Mes missions : </h2>
+
+       {{ dump() }}
+{#       <ul>#}
+{#           <li>{% for boucle in app.user.missions%}#}
+
+{#                   <p>{{ boucle.name}}</p>#}
+{#                   <p>{{ boucle.entreprise}}</p>#}
+{#                   <p>{{ boucle.description}}</p>#}
+{#                   <p>{{ boucle.lieu}}</p>#}
+
+{#               {% endfor %}#}
+{#           </li>#}
+{#       </ul>#}
+
+       <a href="{{ path('app_logout') }}">Se déconnecter</a>
+
+
+   {% endif %}
 
 
 
