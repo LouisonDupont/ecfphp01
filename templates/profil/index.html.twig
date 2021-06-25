@@ -5,100 +5,112 @@
 {% block body %}
 
     <div class="profil_container">
-        {#    {% if is_granted("ROLE_USER") %}#}
-        {#        Hi {{ app.user.prenom }} {{ app.user.nom }}!#}
-        {#    {% endif %}#}
 
-        {% if is_granted("ROLE_ADMIN") %}
+        <div class="profil_header">
+            <div class="profil_left_header">
+                <img src="{{ asset('images/avatar.png') }}">
+                <h2>Bonjour, {{ app.user.prenom }} {{ app.user.nom }} ! (Vous êtes un {% if is_granted("ROLE_CANDIDAT") %}candidat{% endif %}{% if is_granted("ROLE_COLLABORATEUR") %}collaborateur). {% endif %}<a href="{{ path('app_logout') }}">Se déconnecter</a></h2>
+            </div>
+            <div class="profil_right_header">
+                {% if is_granted("ROLE_COLLABORATEUR") %}
+                <img src="{{ asset('images/collab.png') }}">
+                {% endif %}
+                {% if is_granted("ROLE_CANDIDAT") %}
+                    <img src="{{ asset('images/candidat.png') }}">
+                {% endif %}
+            </div>
+        </div>
 
-            <p>Bienvenue Administrateur</p>
-            <a href="{{ path('admin')}}">ICI</a>
+        <div class="profil_content">
+            <div class="profil_content_left">
+                <div class="profil_info profil_item">
+                    <h2>Mes informations : </h2>
+                    <ul>
+                        {#            <li>id : {{ app.user.id }}</li>#}
+                        <li><span>Nom : </span> {{ app.user.nom }}</li>
+                        <li><span>Prénom : </span>{{ app.user.prenom }}</li>
+                        <li><span>Email : </span>{{ app.user.email }}</li>
+                        <li><span>Adresse : </span>{{ app.user.adresse }}</li>
+                        <li><span>Ville : </span>{{ app.user.ville }}</li>
+                        <li><span>Code Postal : </span>{{ app.user.codepostal }}</li>
+                        <li><span>Telephone : </span>{{ app.user.telephone }}</li>
+                        {#    {{ app.user.roles }}#}
+                        {#        <li>password : {{ app.user.password }}</li>#}
+                    </ul>
 
+                    <p class="profil_link">Modifier mes infos : <a href="{{ path('edit', {'id': app.user.id}) }}">ICI</a></p>
+                </div>
+                <div class="profil_competence profil_item">
+                    {% if is_granted("ROLE_COLLABORATEUR") %}
 
-        {% endif %}
-
-
-
-        <h2>JE SUIS {% if is_granted("ROLE_CANDIDAT") %}CANDIDAT{% endif %}{% if is_granted("ROLE_COLLABORATEUR") %}COLLABORATEUR{% endif %}</h2>
-
-
-
-        <h2>Mes informations : </h2>
-        <ul>
-            <li>id : {{ app.user.id }}</li>
-            <li>nom : {{ app.user.nom }}</li>
-            <li>prenom : {{ app.user.prenom }}</li>
-            <li>email : {{ app.user.email }}</li>
-            <li>adresse : {{ app.user.adresse }}</li>
-            <li>ville : {{ app.user.ville }}</li>
-            <li>code postal : {{ app.user.codepostal }}</li>
-            <li>telephone : {{ app.user.telephone }}</li>
-            {#    {{ app.user.roles }}#}
-            {#        <li>password : {{ app.user.password }}</li>#}
-        </ul>
-
-        <p>Modifier mes infos : <a href="{{ path('edit', {'id': app.user.id}) }}">ICI</a></p>
-
-        {% if is_granted("ROLE_COLLABORATEUR") %}
-
-            <h2>Mes compétences : </h2>
-            <ul>
-                <li>{% for boucle in app.user.competences%}
+                        <h2>Mes compétences : </h2>
                         <ul>
-                            <li>{{ boucle.name}}</li>
+                            <li>{% for boucle in app.user.competences%}
+                                    <ul>
+                                        <li>{{ boucle.name}}</li>
+                                    </ul>
+                                {% endfor %}
+                            </li>
                         </ul>
-                    {% endfor %}
-                </li>
-            </ul>
 
-            {% set coltoad = ea_url()
-                .setController('App\\Controller\\Admin\\UserCrudController')
-                .setAction('edit')
-            %}
+                        {% set coltoad = ea_url()
+                            .setController('App\\Controller\\Admin\\UserCrudController')
+                            .setAction('edit')
+                        %}
 
+                        <p class="profil_link">Ajouter une compétence : <a href="{{ coltoad }}">ICI</a></p>
 
-            <p>Ajouter une compétence : <a href="{{ coltoad }}">ICI</a></p>
-
-            <h2>Mes expériences : </h2>
-            <ul>
-                <li>{% for boucle in app.user.experiences%}
-
-                        <p>{{ boucle.name}}</p>
-                        <p>{{ boucle.entreprise}}</p>
-                        <p>{{ boucle.description}}</p>
-                        <p>{{ boucle.date|date('Y-m-d') }}</p>
-                        <p>{{ boucle.datefin|date('Y-m-d') }}</p>
-
-                    {% endfor %}
-                </li>
-            </ul>
-
-            {% set coltoex = ea_url()
-                .setController('App\\Controller\\Admin\\ExperiencesCrudController')
-                .setAction('edit')
-            %}
+                    {% endif %}
+                </div>
 
 
-            <p>Ajouter une compétence : <a href="{{ coltoex }}">ICI</a></p>
+            </div>
+            <div class="profil_content_right">
+                {% if is_granted("ROLE_COLLABORATEUR") %}
+                    <div class="profil_exp profil_item">
+                        <h2>Mes expériences : </h2>
+                        <ul>
+                            <li>{% for boucle in app.user.experiences%}
 
-            <h2>Mes missions : </h2>
+                                    <p>{{ boucle.name}}</p>
+                                    <p>{{ boucle.entreprise}}</p>
+                                    <p>{{ boucle.description}}</p>
+                                    <p>Date de début : {{ boucle.date|date('Y-m-d') }}</p>
+                                    <p>Date de fin : {{ boucle.datefin|date('Y-m-d') }}</p>
 
-            <ul>
-                <li>{% for boucle in app.user.mission%}
+                                {% endfor %}
+                            </li>
+                        </ul>
 
-                        <p>{{ boucle.name}}</p>
-                        <p>{{ boucle.entreprise}}</p>
-                        <p>{{ boucle.description}}</p>
-                        <p>{{ boucle.lieu}}</p>
-
-                    {% endfor %}
-                </li>
-            </ul>
-
-            <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                        {% set coltoex = ea_url()
+                            .setController('App\\Controller\\Admin\\ExperiencesCrudController')
+                            .setAction('edit')
+                        %}
 
 
-        {% endif %}
+                        <p class="profil_link">Ajouter une compétence : <a href="{{ coltoex }}">ICI</a></p>
+
+                    </div>
+                    <div class="profil_mission profil_item">
+                        <h2>Mes missions : </h2>
+
+                        <ul>
+                            <li>{% for boucle in app.user.mission%}
+
+                                    <p>{{ boucle.name}}</p>
+                                    <p>{{ boucle.entreprise}}</p>
+                                    <p>{{ boucle.description}}</p>
+                                    <p>{{ boucle.lieu}}</p>
+
+                                {% endfor %}
+                            </li>
+                        </ul>
+                    </div>
+
+
+                {% endif %}
+            </div>
+        </div>
     </div>
 
 {% endblock %}

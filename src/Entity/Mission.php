@@ -49,7 +49,6 @@ class Mission
      */
     private $user;
 
-
     public function __construct()
     {
         $this->users = new ArrayCollection();
