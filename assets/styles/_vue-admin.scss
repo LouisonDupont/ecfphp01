@@ -1,0 +1,31 @@
+.vueadmin_container{
+  padding: 3rem;
+  max-width: 120rem;
+  min-height: 80vh;
+  margin: 5rem auto 0 auto;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 10px;
+  background-color: white;
+
+  a{
+    color: $blu-c;
+  }
+  a:hover{
+    color: $blu-d;
+  }
+
+  h2{
+    color: $blu-m;
+    margin-bottom: 2rem;
+  }
+
+  .vueadmin_content{
+    display: flex;
+    .vueadmin_content_left{
+      width: 20%;
+    }
+    .vueadmin_content_right{
+      padding-left: 2rem;
+    }
+  }
+}

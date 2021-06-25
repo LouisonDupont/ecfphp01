@@ -9,7 +9,7 @@
         <div class="profil_header">
             <div class="profil_left_header">
                 <img src="{{ asset('images/avatar.png') }}">
-                <h2>Bonjour, {{ app.user.prenom }} {{ app.user.nom }} ! (Vous êtes un {% if is_granted("ROLE_CANDIDAT") %}candidat{% endif %}{% if is_granted("ROLE_COLLABORATEUR") %}collaborateur). {% endif %}<a href="{{ path('app_logout') }}">Se déconnecter</a></h2>
+                <h2>Bonjour, {{ app.user.prenom }} {{ app.user.nom }} ! (Vous êtes un {% if is_granted("ROLE_CANDIDAT") %}candidat). {% endif %}{% if is_granted("ROLE_COLLABORATEUR") %}collaborateur). {% endif %}<a href="{{ path('app_logout') }}">Se déconnecter</a></h2>
             </div>
             <div class="profil_right_header">
                 {% if is_granted("ROLE_COLLABORATEUR") %}

@@ -4,63 +4,58 @@
 
 {% block body %}
 
-    {% if is_granted("ROLE_COLLABORATEUR") %}
+    <div class="vueadmin_container">
 
-    {% endif %}
+        <div class="vueadmin_content">
+            <div class="vueadmin_content_left">
+                <div class="vueadmin_info vueadmin_item">
+                    <h2>Les informations de {{ user.prenom }} {{ user.nom }} :</h2>
+                    <ul>
+                        {#        <li>id : {{ user.id }}</li>#}
+                        <li>nom : {{ user.nom }}</li>
+                        <li>prenom : {{ user.prenom }}</li>
+                        <li>email : {{ user.email }}</li>
+                        <li>adresse : {{ user.adresse }}</li>
+                        <li>ville : {{ user.ville }}</li>
+                        <li>code postal : {{ user.codepostal }}</li>
+                        <li>telephone : {{ user.telephone }}</li>
+                        {#    {{ app.user.roles }}#}
+                        {#        <li>password : {{ app.user.password }}</li>#}
+                    </ul>
 
-    <h2>Les informations de {{ user.prenom }} {{ user.nom }} :</h2>
-    <ul>
-{#        <li>id : {{ user.id }}</li>#}
-        <li>nom : {{ user.nom }}</li>
-        <li>prenom : {{ user.prenom }}</li>
-        <li>email : {{ user.email }}</li>
-        <li>adresse : {{ user.adresse }}</li>
-        <li>ville : {{ user.ville }}</li>
-        <li>code postal : {{ user.codepostal }}</li>
-        <li>telephone : {{ user.telephone }}</li>
-        {#    {{ app.user.roles }}#}
-        {#        <li>password : {{ app.user.password }}</li>#}
-    </ul>
+                </div>
+                <div class="vueadmin_competence vueadmin_item">
+                    <h2>Les compétences de {{ user.prenom }} {{ user.nom }} : </h2>
+                    {% for boucle in user.competences%}
+                                <ul>
+                                    <li>{{ boucle.name}}</li>
+                                </ul>
+                    {% endfor %}
+                </div>
 
-    <h2>Les compétences de {{ user.prenom }} {{ user.nom }} : </h2>
-    <ul>
-        <li>{% for boucle in user.competences%}
-                <ul>
-                    <li>{{ boucle.name}}</li>
-                </ul>
-            {% endfor %}
-        </li>
-    </ul>
+                <a href="{{ path('admin') }}">Revenir à l'administration</a>
+            </div>
+            <div class="vueadmin_content_right">
 
-    <h2>Les expériences de {{ user.prenom }} {{ user.nom }} : </h2>
-    <ul>
-        <li>{% for boucle in user.experiences%}
 
-                <p>{{ boucle.name}}</p>
-                <p>{{ boucle.entreprise}}</p>
-                <p>{{ boucle.description}}</p>
-                <p>{{ boucle.date|date('Y-m-d') }}</p>
-                <p>{{ boucle.datefin|date('Y-m-d') }}</p>
+                    <div class="vueadmin_mission vueadmin_item">
+                        <h2>Les missions de {{ user.prenom }} {{ user.nom }} : </h2>
+                        {% for boucle in user.mission%}
+                        <ul>
+                            <li>
 
-            {% endfor %}
-        </li>
-    </ul>
+                                    <p>{{ boucle.name}}</p>
+                                    <p>{{ boucle.entreprise}}</p>
+                                    <p>{{ boucle.description}}</p>
+                                    <p>{{ boucle.lieu}}</p>
+                            </li>
+                        </ul>
+                        {% endfor %}
+                    </div>
 
-    <h2>Les missions de {{ user.prenom }} {{ user.nom }} : </h2>
-
-    <ul>
-        <li>{% for boucle in user.mission%}
-
-                <p>{{ boucle.name}}</p>
-                <p>{{ boucle.entreprise}}</p>
-                <p>{{ boucle.description}}</p>
-                <p>{{ boucle.lieu}}</p>
-
-            {% endfor %}
-        </li>
-    </ul>
-
-    <a href="{{ path('admin') }}">Revenir à l'administration</a>
+            </div>
+        </div>
+    </div>
 
 
 {% endblock %}
