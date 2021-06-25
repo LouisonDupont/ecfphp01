@@ -51,10 +51,10 @@
                 .setController('App\\Controller\\Admin\\UserCrudController')
                 .setAction('new')
             %}
-            {% set urlview = ea_url()
-                .setController('App\\Controller\\Admin\\UserCrudController')
-                .setAction('index')
-            %}
+{#            {% set urlview = ea_url()#}
+{#                .setController('App\\Controller\\Admin\\UserCrudController')#}
+{#                .setAction('index')#}
+{#            %}#}
             {% set detail = ea_url()
                 .setController('App\\Controller\\Admin\\UserCrudController')
                 .setAction('detail')
@@ -74,7 +74,9 @@
                             <li><a href="{{ path('show', {'id': user.id})}}">{{ user.prenom}} {{ user.nom}}</a></li>
                         </ul>
                     {% endfor %}
-                    <a href="{{ urlview }}" class="admin_btn" style="margin-top: 1rem;">Voir les utilisateurs</a>
+{#                    <a href="{{ urlview }}" class="admin_btn" style="margin-top: 1rem;">Voir les utilisateurs</a>#}
+                    <a href="{{ path('all') }}" class="admin_btn" style="margin-top: 1rem;">Voir les utilisateurs</a>
+
                 </div>
 
                 {#                Nombre de compétences :#}
