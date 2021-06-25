@@ -4,10 +4,13 @@
 
 {% block body %}
 
-    <h2>Mes informations : </h2>
+    {% if is_granted("ROLE_COLLABORATEUR") %}
+
+    {% endif %}
+
+    <h2>Les informations de {{ user.prenom }} {{ user.nom }} :</h2>
     <ul>
-        {{ dump() }}
-        <li>id : {{ user.id }}</li>
+{#        <li>id : {{ user.id }}</li>#}
         <li>nom : {{ user.nom }}</li>
         <li>prenom : {{ user.prenom }}</li>
         <li>email : {{ user.email }}</li>
@@ -18,6 +21,46 @@
         {#    {{ app.user.roles }}#}
         {#        <li>password : {{ app.user.password }}</li>#}
     </ul>
+
+    <h2>Les compétences de {{ user.prenom }} {{ user.nom }} : </h2>
+    <ul>
+        <li>{% for boucle in user.competences%}
+                <ul>
+                    <li>{{ boucle.name}}</li>
+                </ul>
+            {% endfor %}
+        </li>
+    </ul>
+
+    <h2>Les expériences de {{ user.prenom }} {{ user.nom }} : </h2>
+    <ul>
+        <li>{% for boucle in user.experiences%}
+
+                <p>{{ boucle.name}}</p>
+                <p>{{ boucle.entreprise}}</p>
+                <p>{{ boucle.description}}</p>
+                <p>{{ boucle.date|date('Y-m-d') }}</p>
+                <p>{{ boucle.datefin|date('Y-m-d') }}</p>
+
+            {% endfor %}
+        </li>
+    </ul>
+
+    <h2>Les missions de {{ user.prenom }} {{ user.nom }} : </h2>
+
+    <ul>
+        <li>{% for boucle in user.mission%}
+
+                <p>{{ boucle.name}}</p>
+                <p>{{ boucle.entreprise}}</p>
+                <p>{{ boucle.description}}</p>
+                <p>{{ boucle.lieu}}</p>
+
+            {% endfor %}
+        </li>
+    </ul>
+
+    <a href="{{ path('admin') }}">Revenir à l'administration</a>
 
 
 {% endblock %}

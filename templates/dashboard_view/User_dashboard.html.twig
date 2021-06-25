@@ -113,13 +113,15 @@
 
                 {% if is_granted("ROLE_COLLABORATEUR") %}
 
-
+                    <h2>Experiences :</h2>
 
                     {% for xp in app.user.experiences%}
 
-                        <h2>Experiences :</h2>
+
 
                         <p>{{ xp.name}}</p>
+                        <p>{{ xp.entreprise}}</p>
+                        <p>{{ xp.description}}</p>
 
                     {% endfor %}
 

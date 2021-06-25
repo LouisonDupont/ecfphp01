@@ -24,7 +24,8 @@ class ExperiencesCrudController extends AbstractCrudController
             TextField::new('name', 'Intitulé'),
             TextField::new('entreprise', 'Entreprise'),
             TextareaField::new('description', 'Description'),
-            DateTimeField::new('date', 'Date')
+            DateTimeField::new('date', 'Date de depart'),
+            DateTimeField::new('datefin', 'Date de fin')
         ];
     }
 

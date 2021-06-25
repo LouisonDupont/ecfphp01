@@ -84,7 +84,7 @@ class UserDashboardController extends AbstractDashboardController
             ->setEntityId($user->getId())
             ->setPermission("ROLE_COLLABORATEUR")
         ;
-        yield MenuItem::linkToCrud('Experiences', 'fa fa-users', Experiences::class)
+        yield MenuItem::linkToCrud('Ajouter une experience', 'fa fa-users', Experiences::class)
             ->setPermission("ROLE_COLLABORATEUR")
         ;
         yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-users', User::class)
@@ -92,7 +92,7 @@ class UserDashboardController extends AbstractDashboardController
         ;
         yield MenuItem::linkToCrud('Missions', 'fa fa-calendar-minus-o', Mission::class)
         ->setPermission("ROLE_ADMIN")
-        ;
+            ;
         yield MenuItem::linkToCrud('Compétences', 'fa fa-graduation-cap', Competences::class)
         ->setPermission("ROLE_ADMIN")
         ;

@@ -3,17 +3,19 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    {#    {% if is_granted("ROLE_USER") %}#}
-    {#        Hi {{ app.user.prenom }} {{ app.user.nom }}!#}
-    {#    {% endif %}#}
 
-    {% if is_granted("ROLE_ADMIN") %}
+    <div class="profil_container">
+        {#    {% if is_granted("ROLE_USER") %}#}
+        {#        Hi {{ app.user.prenom }} {{ app.user.nom }}!#}
+        {#    {% endif %}#}
 
-        <p>Bienvenue Administrateur</p>
-        <a href="{{ path('admin')}}">ICI</a>
+        {% if is_granted("ROLE_ADMIN") %}
+
+            <p>Bienvenue Administrateur</p>
+            <a href="{{ path('admin')}}">ICI</a>
 
 
-    {% endif %}
+        {% endif %}
 
 
 
@@ -21,82 +23,82 @@
 
 
 
-    <h2>Mes informations : </h2>
-    <ul>
-        <li>id : {{ app.user.id }}</li>
-        <li>nom : {{ app.user.nom }}</li>
-        <li>prenom : {{ app.user.prenom }}</li>
-        <li>email : {{ app.user.email }}</li>
-        <li>adresse : {{ app.user.adresse }}</li>
-        <li>ville : {{ app.user.ville }}</li>
-        <li>code postal : {{ app.user.codepostal }}</li>
-        <li>telephone : {{ app.user.telephone }}</li>
-        {#    {{ app.user.roles }}#}
-        {#        <li>password : {{ app.user.password }}</li>#}
-    </ul>
+        <h2>Mes informations : </h2>
+        <ul>
+            <li>id : {{ app.user.id }}</li>
+            <li>nom : {{ app.user.nom }}</li>
+            <li>prenom : {{ app.user.prenom }}</li>
+            <li>email : {{ app.user.email }}</li>
+            <li>adresse : {{ app.user.adresse }}</li>
+            <li>ville : {{ app.user.ville }}</li>
+            <li>code postal : {{ app.user.codepostal }}</li>
+            <li>telephone : {{ app.user.telephone }}</li>
+            {#    {{ app.user.roles }}#}
+            {#        <li>password : {{ app.user.password }}</li>#}
+        </ul>
 
-    <p>Modifier mes infos : <a href="{{ path('edit', {'id': app.user.id}) }}">ICI</a></p>
+        <p>Modifier mes infos : <a href="{{ path('edit', {'id': app.user.id}) }}">ICI</a></p>
 
-   {% if is_granted("ROLE_COLLABORATEUR") %}
+        {% if is_granted("ROLE_COLLABORATEUR") %}
 
-       <h2>Mes compétences : </h2>
-       <ul>
-           <li>{% for boucle in app.user.competences%}
-                   <ul>
-                       <li>{{ boucle.name}}</li>
-                   </ul>
-               {% endfor %}
-           </li>
-       </ul>
+            <h2>Mes compétences : </h2>
+            <ul>
+                <li>{% for boucle in app.user.competences%}
+                        <ul>
+                            <li>{{ boucle.name}}</li>
+                        </ul>
+                    {% endfor %}
+                </li>
+            </ul>
 
-   {% set coltoad = ea_url()
-           .setController('App\\Controller\\Admin\\UserCrudController')
-           .setAction('edit')
-   %}
-
-
-    <p>Ajouter une compétence : <a href="{{ coltoad }}">ICI</a></p>
-
-       <h2>Mes expériences : </h2>
-       <ul>
-           <li>{% for boucle in app.user.experiences%}
-
-                   <p>{{ boucle.name}}</p>
-                   <p>{{ boucle.entreprise}}</p>
-                   <p>{{ boucle.description}}</p>
-
-               {% endfor %}
-           </li>
-       </ul>
-
-       {% set coltoex = ea_url()
-           .setController('App\\Controller\\Admin\\ExperiencesCrudController')
-           .setAction('edit')
-       %}
+            {% set coltoad = ea_url()
+                .setController('App\\Controller\\Admin\\UserCrudController')
+                .setAction('edit')
+            %}
 
 
-       <p>Ajouter une compétence : <a href="{{ coltoex }}">ICI</a></p>
+            <p>Ajouter une compétence : <a href="{{ coltoad }}">ICI</a></p>
 
-       <h2>Mes missions : </h2>
+            <h2>Mes expériences : </h2>
+            <ul>
+                <li>{% for boucle in app.user.experiences%}
 
-       {{ dump() }}
-{#       <ul>#}
-{#           <li>{% for boucle in app.user.missions%}#}
+                        <p>{{ boucle.name}}</p>
+                        <p>{{ boucle.entreprise}}</p>
+                        <p>{{ boucle.description}}</p>
+                        <p>{{ boucle.date|date('Y-m-d') }}</p>
+                        <p>{{ boucle.datefin|date('Y-m-d') }}</p>
 
-{#                   <p>{{ boucle.name}}</p>#}
-{#                   <p>{{ boucle.entreprise}}</p>#}
-{#                   <p>{{ boucle.description}}</p>#}
-{#                   <p>{{ boucle.lieu}}</p>#}
+                    {% endfor %}
+                </li>
+            </ul>
 
-{#               {% endfor %}#}
-{#           </li>#}
-{#       </ul>#}
-
-       <a href="{{ path('app_logout') }}">Se déconnecter</a>
-
-
-   {% endif %}
+            {% set coltoex = ea_url()
+                .setController('App\\Controller\\Admin\\ExperiencesCrudController')
+                .setAction('edit')
+            %}
 
 
+            <p>Ajouter une compétence : <a href="{{ coltoex }}">ICI</a></p>
+
+            <h2>Mes missions : </h2>
+
+            <ul>
+                <li>{% for boucle in app.user.mission%}
+
+                        <p>{{ boucle.name}}</p>
+                        <p>{{ boucle.entreprise}}</p>
+                        <p>{{ boucle.description}}</p>
+                        <p>{{ boucle.lieu}}</p>
+
+                    {% endfor %}
+                </li>
+            </ul>
+
+            <a href="{{ path('app_logout') }}">Se déconnecter</a>
+
+
+        {% endif %}
+    </div>
 
 {% endblock %}

@@ -42,6 +42,12 @@ class Experiences
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $datefin;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -111,4 +117,17 @@ class Experiences
 
         return $this;
     }
+
+    public function getDatefin(): ?\DateTimeInterface
+    {
+        return $this->datefin;
+    }
+
+    public function setDatefin(\DateTimeInterface $datefin): self
+    {
+        $this->datefin = $datefin;
+
+        return $this;
+    }
+
 }

@@ -77,6 +77,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $experiences;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Mission::class, mappedBy="user")
+     */
+    private $mission;
+
+
 
 //    /**
 //     * * @var datetime $createAt
@@ -89,6 +95,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->Competences = new ArrayCollection();
         $this->experiences = new ArrayCollection();
+        $this->mission = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -270,6 +277,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 //        $this->updated = new \DateTime("now");
 //    }
 
+
+
 public function getTelephone(): ?string
 {
     return $this->telephone;
@@ -354,4 +363,35 @@ public function setCodepostal(string $codepostal): self
 
           return $this;
       }
+
+      /**
+       * @return Collection|Mission[]
+       */
+      public function getMission(): Collection
+      {
+          return $this->mission;
+      }
+
+      public function addMission(Mission $mission): self
+      {
+          if (!$this->mission->contains($mission)) {
+              $this->mission[] = $mission;
+              $mission->setUser($this);
+          }
+
+          return $this;
+      }
+
+      public function removeMission(Mission $mission): self
+      {
+          if ($this->mission->removeElement($mission)) {
+              // set the owning side to null (unless already changed)
+              if ($mission->getUser() === $this) {
+                  $mission->setUser(null);
+              }
+          }
+
+          return $this;
+      }
+
 }
