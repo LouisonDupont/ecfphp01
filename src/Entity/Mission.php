@@ -25,11 +25,6 @@ class Mission
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $entreprise;
-
-    /**
      * @ORM\Column(type="text")
      */
     private $description;
@@ -48,6 +43,11 @@ class Mission
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="mission")
      */
     private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="mission")
+     */
+    private $entreprise;
 
     public function __construct()
     {
@@ -71,18 +71,6 @@ class Mission
         return $this;
     }
 
-    public function getEntreprise(): ?string
-    {
-        return $this->entreprise;
-    }
-
-    public function setEntreprise(string $entreprise): self
-    {
-        $this->entreprise = $entreprise;
-
-        return $this;
-    }
-
     public function getDescription(): ?string
     {
         return $this->description;
@@ -94,6 +82,7 @@ class Mission
 
         return $this;
     }
+
 
     public function getLieu(): ?string
     {
@@ -127,6 +116,18 @@ class Mission
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getEntreprise(): ?Entreprise
+    {
+        return $this->entreprise;
+    }
+
+    public function setEntreprise(?Entreprise $entreprise): self
+    {
+        $this->entreprise = $entreprise;
 
         return $this;
     }

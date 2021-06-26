@@ -22,8 +22,8 @@ class MissionCrudController extends AbstractCrudController
         return [
 
             AssociationField::new('user', 'Utilisateur'),
+            AssociationField::new('entreprise', 'Entreprise'),
             TextField::new('name', 'Intitulé'),
-            TextField::new('entreprise', 'Entreprise'),
             TextareaField::new('description', 'Description'),
             TextField::new('lieu', 'Lieu de la mission'),
             DateTimeField::new('date', 'Date')
