@@ -16,6 +16,9 @@
                 <div class="button_container">
                     <a class="alde_button" href="{{ path('app_login') }}">Se connecter</a>
                     <a class="alde_button" href="{{ path('register') }}">S'inscrire</a>
+                    {% if is_granted("ROLE_CANDIDAT") %}
+                    <a class="alde_button" href="{{ path('register') }}">Mon profil</a>
+                    {% endif %}
                 </div>
             </div>
             <div class="welcome_content_right">

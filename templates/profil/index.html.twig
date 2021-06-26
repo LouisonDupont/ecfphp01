@@ -75,8 +75,8 @@
                                     <p>{{ boucle.name}}</p>
                                     <p>{{ boucle.entreprise}}</p>
                                     <p>{{ boucle.description}}</p>
-                                    <p>Date de début : {{ boucle.date|date('Y-m-d') }}</p>
-                                    <p>Date de fin : {{ boucle.datefin|date('Y-m-d') }}</p>
+                                    <p>Date de début : {{ boucle.date|date('m/Y') }}</p>
+                                    <p>Date de fin : {{ boucle.datefin|date('m/Y') }}</p>
 
                                 {% endfor %}
                             </li>
@@ -88,23 +88,25 @@
                         %}
 
 
-                        <p class="profil_link">Ajouter une compétence : <a href="{{ coltoex }}">ICI</a></p>
+                        <p class="profil_link">Ajouter une expérience : <a href="{{ coltoex }}">ICI</a></p>
 
                     </div>
                     <div class="profil_mission profil_item">
                         <h2>Mes missions : </h2>
 
+                        {% for boucle in app.user.mission%}
                         <ul>
-                            <li>{% for boucle in app.user.mission%}
+                            <li style="margin-bottom: 2rem">
 
-                                    <p>{{ boucle.name}}</p>
-                                    <p>{{ boucle.entreprise}}</p>
+                                    <p style="font-weight: 700">{{ boucle.name}}</p>
+                                    <p style="font-style: italic">{{ boucle.entreprise}}</p>
                                     <p>{{ boucle.description}}</p>
                                     <p>{{ boucle.lieu}}</p>
 
-                                {% endfor %}
+
                             </li>
                         </ul>
+                        {% endfor %}
                     </div>
 
 
