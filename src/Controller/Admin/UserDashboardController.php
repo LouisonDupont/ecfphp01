@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Category;
 use App\Entity\Competences;
+use App\Entity\Entreprise;
 use App\Entity\Experiences;
 use App\Entity\Mission;
 use App\Entity\User;
@@ -89,6 +90,9 @@ class UserDashboardController extends AbstractDashboardController
         ;
         yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-users', User::class)
         ->setPermission("ROLE_ADMIN")
+        ;
+        yield MenuItem::linkToCrud('Entreprises', 'fa fa-suitcase', Entreprise::class)
+            ->setPermission("ROLE_ADMIN")
         ;
         yield MenuItem::linkToCrud('Missions', 'fa fa-calendar-minus-o', Mission::class)
         ->setPermission("ROLE_ADMIN")

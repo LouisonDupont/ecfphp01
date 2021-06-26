@@ -6,4 +6,68 @@
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 10px;
   background-color: white;
+
+  .all_header{
+    padding-top: 2rem;
+    max-width: 120rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    a{
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    img{
+      width: 15px;
+      margin-right: 1rem;
+    }
+
+    .all_header_right_content{
+      display: flex;
+    }
+  }
+
+  .all_content{
+    margin: 2rem auto 0 auto;
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
+
+    .user_article{
+      margin: 0 2rem;
+      padding: 2rem;
+      background-color: $blu-l;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      .pictorole{
+        position: absolute;
+        width: 50px;
+        top: 0;
+        left: 0;
+      }
+
+      .all_user_info{
+        font-size: 1.2rem;
+      }
+
+      .all_adresse{
+        display: flex;
+        margin-bottom: 2rem;
+      }
+
+      .all_user_comp, .all_user_exp, .all_user_mission{
+        margin-bottom: 1rem;
+        h2{
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+        }
+      }
+
+      .avatar{
+        max-width: 70px;
+        align-self: center;
+      }
+    }
+  }
 }

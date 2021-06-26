@@ -21,9 +21,9 @@ class EntrepriseCrudController extends AbstractCrudController
         return [
 //            AssociationField::new('user', 'Utilisateur'),
             TextField::new('name', "Nom de l'entreprise"),
-            TextField::new('entreprise', 'Entreprise'),
-            TextareaField::new('description', 'Description'),
-            DateTimeField::new('date', 'Date')
+            TextField::new('domaine', 'Domaine'),
+            TextField::new('ville', "Ville"),
+            TextField::new('pays', 'Pays'),
         ];
     }
 }

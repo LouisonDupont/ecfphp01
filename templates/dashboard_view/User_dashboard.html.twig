@@ -75,7 +75,7 @@
                         </ul>
                     {% endfor %}
 {#                    <a href="{{ urlview }}" class="admin_btn" style="margin-top: 1rem;">Voir les utilisateurs</a>#}
-                    <a href="{{ path('all') }}" class="admin_btn" style="margin-top: 1rem;">Voir les utilisateurs</a>
+                    <a href="{{ path('all') }}" class="admin_btn" style="margin-top: 1rem;">Voir tout les utilisateurs</a>
 
                 </div>
 
@@ -102,6 +102,8 @@
                 {#                    {% endfor %}#}
                 {#                {% endfor %}#}
 
+                {% if is_granted("ROLE_COLLABORATEUR") %}
+
                 <h2>Compétences :</h2>
 
                 {% for comp in app.user.competences%}
@@ -112,6 +114,8 @@
                         <li>{{ comp.name}}</li>
                     </ul>
                 {% endfor %}
+
+                {% endif %}
 
                 {% if is_granted("ROLE_COLLABORATEUR") %}
 
