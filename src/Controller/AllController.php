@@ -31,4 +31,36 @@ class AllController extends AbstractController
             'user' => $user
         ]);
     }
+
+    /**
+     * @Route("/admin/candidat", name="findcandidat")
+     * * @IsGranted("ROLE_ADMIN")
+     */
+    public function candidat(): Response
+    {
+
+        $user = $this->entityManager->getRepository(User::class)->findAll();
+
+        return $this->render('all/showcandidat.html.twig', [
+            'controller_name' => 'AllController',
+            'user' => $user
+        ]);
+    }
+
+    /**
+     * @Route("/admin/collaborateur", name="findcollaborateur")
+     * * @IsGranted("ROLE_ADMIN")
+     */
+    public function collaborateur(): Response
+    {
+
+        $user = $this->entityManager->getRepository(User::class)->findAll();
+
+        return $this->render('all/showcollab.html.twig', [
+            'controller_name' => 'AllController',
+            'user' => $user
+        ]);
+    }
+
+
 }

@@ -63,7 +63,7 @@
                                 <p class="all_user_info">{{ exp.datefin |date('Y-m')}}</p>
                             {% endfor %}
                         </div>
-
+                        {% if user.roles[0] == "ROLE_COLLABORATEUR" %}
                         <div class="all_user_mission">
                             <h2>Missions :</h2>
                             {% for mis in user.mission%}
@@ -74,6 +74,7 @@
 
                             {% endfor %}
                         </div>
+                        {% endif %}
 
                     </div>
                     {% endif %}

@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+    <div class="all_container">
+
+        <div class="all_header">
+            <div class="all_header_left_content">
+
+                {% set urledit = ea_url()
+                    .setController('App\\Controller\\Admin\\UserCrudController')
+                    .setAction('index')
+                %}
+
+
+                <a href="{{ path('admin') }}"><img src="{{ asset('images/left.svg') }}" alt="Icone d'une fleche précédente">Retour au tableau de bord</a>
+            </div>
+            <div class="all_header_right_content">
+                <a href="{{ urledit }}">Modifier les utilisateurs</a>
+            </div>
+
+        </div>
+
+        <div class="all_content">
+
+            {#            {{ dump() }}#}
+
+            {% for user in user%}
+                {% if (user.roles[0] != "ROLE_ADMIN") and (user.roles[0] !="ROLE_CANDIDAT")  %}
+                    <div class="user_article">
+                        {% if user.roles[0] == "ROLE_COLLABORATEUR" %}
+                            <img class="pictorole" src="{{ asset('images/collab.png') }}">
+                        {% endif %}
+                        {% if user.roles[0] =="ROLE_CANDIDAT" %}
+                            <img class="pictorole" src="{{ asset('images/candidat.png') }}">
+                        {% endif %}
+                        <img  class="avatar" src="{{ asset('images/avatar.png') }}">
+                        <p class="all_user_info" style="margin-top: 2rem">{{ user.prenom}} {{ user.nom}}</p>
+                        <p class="all_user_info">{{ user.email}}</p>
+                        <p class="all_user_info">{{ user.telephone}}</p>
+                        <p class="all_user_info">{{ user.adresse}}</p>
+                        <div class="all_adresse">
+                            <p class="all_user_info">{{ user.codepostal}}</p>
+                            <p class="all_user_info" style="margin-left: .7rem">{{ user.ville}}</p>
+                        </div>
+
+                        <div class="all_user_comp">
+                            <h2>Compétences :</h2>
+                            {% for comp in user.competences%}
+                                <p class="all_user_info">{{ comp.name}}</p>
+                            {% endfor %}
+                        </div>
+
+                        <div class="all_user_exp">
+                            <h2>Expériences :</h2>
+                            {% for exp in user.experiences%}
+                                <p class="all_user_info">{{ exp.name}}</p>
+                                <p class="all_user_info">{{ exp.description}}</p>
+                                <p class="all_user_info">{{ exp.entreprise}}</p>
+                                <p class="all_user_info">{{ exp.date |date('Y-m')}}</p>
+                                <p class="all_user_info">{{ exp.datefin |date('Y-m')}}</p>
+                            {% endfor %}
+                        </div>
+                        {% if user.roles[0] == "ROLE_COLLABORATEUR" %}
+                            <div class="all_user_mission">
+                                <h2>Missions :</h2>
+                                {% for mis in user.mission%}
+                                    <p class="all_user_info">{{ mis.name}}</p>
+                                    <p class="all_user_info">{{ mis.entreprise}}</p>
+                                    <p class="all_user_info">{{ mis.description}}</p>
+                                    <p class="all_user_info">{{ mis.lieu}}</p>
+
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+
+        </div>
+    </div>
+
+
+{% endblock %}
